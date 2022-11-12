@@ -1,1 +1,59 @@
 @use "sass:math";
+
+.win {
+    width: 100%;
+    height: 100%;
+    padding-top: 1px;
+    .pool-balance {
+        position: absolute;
+        width: 100%;
+        height: 80%;
+        opacity: 0.05;
+        margin: auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            width: 100%;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        &-num {
+            width: 100%;
+            font-size: 160px;
+            font-weight: bolder;
+        }
+    }
+
+    &-do {
+        margin-top: 30px;
+        &-input {
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        &-winNum {
+            width: 100%;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 30px;
+            margin-bottom: 40px;
+        }
+
+        .rollButton {
+            display: block;
+            width: 100px;
+            margin: 5px auto;
+        }
+
+        .claimButton {
+            display: block;
+            width: 300px;
+            margin: 5px auto;
+        }
+    }
+}
