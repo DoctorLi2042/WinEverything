@@ -1,3 +1,13 @@
+# Win everything
+
+Web:[https://wineverything.on.fleek.co/](https://wineverything.on.fleek.co/)
+
+The website is docked to the NEST protocol and fully interacts with smart contracts, with no centralized requests (hence some of the poorer experiences).
+
+## v1.0
+
+Complete the basic operations (authorization, roll, claim) and phone adaptation, currently only support metamask link wallet.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
