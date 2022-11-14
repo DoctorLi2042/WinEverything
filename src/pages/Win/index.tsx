@@ -18,7 +18,10 @@ import TextField from "@mui/material/TextField";
 import { Button, InputAdornment } from "@mui/material";
 import { BigNumber } from "ethers";
 import { downTime, formatWinNum } from "../../libs/utils";
-import { useTransactionReceipt } from "../../libs/hooks/useTransactionReceipt";
+import {
+  TransactionType,
+  usePendingTransactions,
+} from "../../libs/hooks/useTransactionReceipt";
 
 type ClaimType = {
   blockNumber: BigNumber;
@@ -29,7 +32,8 @@ type ClaimType = {
 const Win: FC = () => {
   const className = "win";
   const { chainId, account, library } = useWeb3React();
-  const { setHash, transactionState } = useTransactionReceipt();
+  const { addPendingList, isTransactionPending, pendingList } =
+    usePendingTransactions();
   const [nestAllow, setNestAllow] = useState<BigNumber>(BigNumber.from("0"));
   const [approveDis, setApproveDis] = useState(false);
   const [claimDis, setClaimDis] = useState(false);
@@ -69,7 +73,12 @@ const Win: FC = () => {
   }, [chainId, nestToken]);
   // approve
   useEffect(() => {
-    if (!chainId || !account || !library) {
+    if (
+      !chainId ||
+      !account ||
+      !library ||
+      isTransactionPending(TransactionType.approve)
+    ) {
       return;
     }
     if (!nestToken) {
@@ -84,8 +93,11 @@ const Win: FC = () => {
       setNestAllow(allowance);
     };
     getAllow();
-
-  }, [account, chainId, library, nestToken, transactionState]);
+  }, [account, chainId, library, nestToken, isTransactionPending, pendingList]);
+  useEffect(() => {
+    setApproveDis(isTransactionPending(TransactionType.approve));
+    setClaimDis(isTransactionPending(TransactionType.claim));
+  }, [isTransactionPending, pendingList]);
   // claimArray
   useEffect(() => {
     if (!account || !winContract) {
@@ -129,7 +141,7 @@ const Win: FC = () => {
     return () => {
       clearInterval(timeInterval);
     };
-  }, [account, library, winContract]);
+  }, [account, library, winContract, pendingList]);
   // time
   useEffect(() => {
     if (claimType) {
@@ -222,8 +234,7 @@ const Win: FC = () => {
         console.log(error);
       })
       .then((res: any) => {
-        setApproveDis(false);
-        setHash(res.hash)
+        addPendingList({ hash: res.hash, type: TransactionType.approve });
         console.log(res);
       });
   };
@@ -255,7 +266,7 @@ const Win: FC = () => {
         console.log(error);
       })
       .then((res: any) => {
-        setClaimDis(false);
+        addPendingList({ hash: res.hash, type: TransactionType.claim });
         console.log(res);
       });
   };
@@ -313,7 +324,7 @@ const Win: FC = () => {
             </Button>
             <Button
               className="claimButton"
-              variant="outlined"
+              variant="contained"
               onClick={claim}
               disabled={checkClaimButton()}
             >
@@ -328,7 +339,7 @@ const Win: FC = () => {
         ) : (
           <Button
             className="rollButton"
-            variant="outlined"
+            variant="contained"
             onClick={approve}
             disabled={checkApproveButton()}
           >

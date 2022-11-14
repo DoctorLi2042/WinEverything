@@ -4,10 +4,11 @@
     width: 100%;
     height: 100%;
     padding-top: 1px;
+
     .pool-balance {
         position: absolute;
         width: 100%;
-        height: 80%;
+        height: 70%;
         opacity: 0.05;
         margin: auto 0;
         display: flex;
@@ -16,7 +17,7 @@
 
         h1 {
             width: 100%;
-            font-size: 50px;
+            font-size: 70px;
             text-align: center;
         }
 
@@ -29,11 +30,16 @@
 
     &-do {
         margin-top: 30px;
+
         &-input {
             display: flex;
             justify-content: space-between;
             width: 600px;
             margin: 0 auto;
+
+            .MuiFormControl-root {
+                width: 250px;
+            }
         }
 
         &-winNum {
@@ -42,18 +48,63 @@
             margin-top: 40px;
             font-size: 30px;
             margin-bottom: 40px;
+            background: linear-gradient(to right, #007FFF, #0059B2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .rollButton {
             display: block;
-            width: 100px;
+            width: 300px;
             margin: 5px auto;
         }
 
         .claimButton {
             display: block;
             width: 300px;
-            margin: 5px auto;
+            margin: 0 auto;
+            margin-top: 20px;
         }
     }
+}
+
+@media screen and (max-width: 1000px) {
+    .win {
+
+        .pool-balance {
+            position: relative;
+            opacity: 0.2;
+            margin: auto 0;
+            margin-top: 20px;
+
+            h1 {
+                width: 100%;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            &-num {
+                width: 100%;
+                font-size: 30px;
+                font-weight: bolder;
+            }
+        }
+
+        &-do {
+            margin-top: 0px;
+
+            &-input {
+                display: block;
+                align-items: center;
+                width: 100%;
+                padding: 0 30px;
+
+                .MuiFormControl-root {
+                    width: 100%;
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+
 }

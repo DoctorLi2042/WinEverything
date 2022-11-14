@@ -3,17 +3,23 @@
 header {
     width: 100%;
     height: 60px;
-    border-bottom: 1px solid gray;
     display: flex;
     justify-content: space-between;
+    backdrop-filter: blur(20px);
+    box-shadow: inset 0px -1px 1px #E7EBF0;
+    background-color: rgba(255, 255, 255, 0.72);
 
-    .hold, .connect {
+    .hold,
+    .connect {
         width: 200px;
     }
 
     h1 {
         text-align: center;
         line-height: 60px;
+        background: linear-gradient(to right, #007FFF, #0059B2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
 
         span {
             font-size: 12px;
@@ -22,5 +28,14 @@ header {
 }
 
 @media screen and (max-width: 1000px) {
+    header {
+        display: block;
+        height: 120px;
+
+        .connect {
+            display: block;
+            margin: 0 auto;
+        }
+    }
 
 }
