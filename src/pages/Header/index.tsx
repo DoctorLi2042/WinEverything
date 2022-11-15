@@ -6,6 +6,7 @@ import "./styles";
 import { useWeb3React } from "@web3-react/core";
 import { showEllipsisAddress } from "../../libs/utils";
 import { SupportedChains } from "../../libs/connectors/chains";
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Header: FC = () => {
   const { account, activate, chainId } = useWeb3React();
@@ -14,7 +15,7 @@ const Header: FC = () => {
   const nowChain = SupportedChains.filter((e) => {return chainId === e.chainId})
   return (
     <header>
-      <div className="hold"></div>
+      <div className="hold"><a href="https://github.com/DoctorLi2042/WinEverything"><GitHubIcon sx={{ color: '#007FFF' }}/></a></div>
       <h1>Win everything<span>{nowChain.length > 0 ? nowChain[0].name : ''}</span></h1>
       <Button
         className="connect"

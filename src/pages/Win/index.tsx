@@ -243,6 +243,8 @@ const Win: FC = () => {
       return;
     }
     setRollDis(true);
+    console.log(parseUnits(nestInput, 4).toString())
+    console.log(parseUnits(multiplierInput, 4).toString())
     winContract
       .roll44(parseUnits(nestInput, 4), parseUnits(multiplierInput, 4))
       .catch((error: any) => {

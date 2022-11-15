@@ -14,6 +14,18 @@ header {
         width: 200px;
     }
 
+    .hold {
+        display: flex;
+
+        a {
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin: auto 0;
+            margin-left: 20px;
+        }
+    }
+
     h1 {
         text-align: center;
         line-height: 60px;
@@ -31,6 +43,14 @@ header {
     header {
         display: block;
         height: 120px;
+
+        .hold {
+            margin: 0 auto;
+
+            a {
+                margin: 0 auto;
+            }
+        }
 
         .connect {
             display: block;
